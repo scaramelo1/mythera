@@ -14,6 +14,8 @@ const BOTOES := [
 ]
 
 var hud = null
+## Botões mostrados (a vila, por enquanto, só usa atacar e esquivar).
+var botoes: Array = BOTOES.duplicate()
 var dedo_analogico := -1
 var centro_analogico := Vector2.ZERO
 var ponta_analogico := Vector2.ZERO
@@ -47,7 +49,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _tocou(dedo: int, pos: Vector2) -> void:
-	for b in BOTOES:
+	for b in botoes:
 		if pos.distance_to(size + b.pos) <= b.get("raio", RAIO_BOTAO) * 1.15:
 			dedos_botoes[dedo] = b.acao
 			Input.action_press(b.acao)
@@ -83,7 +85,7 @@ func _draw() -> void:
 		draw_circle(centro_analogico + (ponta_analogico - centro_analogico).limit_length(RAIO_ANALOGICO), 32.0, Color(1, 1, 1, 0.45))
 	else:
 		draw_arc(Vector2(140, size.y - 140), RAIO_ANALOGICO, 0, TAU, 48, Color(1, 1, 1, 0.25), 3.0)
-	for b in BOTOES:
+	for b in botoes:
 		var c: Vector2 = size + b.pos
 		var r: float = b.get("raio", RAIO_BOTAO)
 		var apertado: bool = b.acao in dedos_botoes.values()

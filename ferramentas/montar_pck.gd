@@ -2,8 +2,8 @@ extends SceneTree
 ## Junta o jogo num arquivo .pck sem abrir o editor (a VPS não tem memória para o editor).
 ##   godot --headless --path . -s ferramentas/montar_pck.gd -- exportar/web/index.pck
 
-const PASTAS_FORA := ["testes", "docs", "publicar", "ferramentas", "exportar", ".git", ".godot"]
-const EXTENSOES := ["gd", "tscn", "tres", "json", "godot", "png", "ogg", "wav"]
+const PASTAS_FORA := ["testes", "docs", "publicar", "ferramentas", "exportar", "arte-original", ".git", ".godot"]
+const EXTENSOES := ["gd", "tscn", "tres", "json", "godot", "png", "webp", "ogg", "wav"]
 
 
 func _init() -> void:

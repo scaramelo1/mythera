@@ -16,6 +16,8 @@ const INVULNERAVEL_APOS_DANO := 0.6
 
 var jogo: Node = null
 var dados = null  # HeroiDados
+## Tamanho do desenho (a vila usa 1,2 para combinar com as casas do mapa).
+var escala := 1.0
 var olhar := Vector2.DOWN
 var esquivando := false
 
@@ -133,4 +135,6 @@ func _draw() -> void:
 		modulate = Color(1, 1, 1, 0.5)
 	else:
 		modulate = Color.WHITE
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE * escala)
 	Desenho.heroi(self, olhar, _passo, _piscar > 0.0)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

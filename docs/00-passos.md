@@ -21,12 +21,22 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), adaptado para **2D visto
 - ✅ Projeto 2D: tela 1280 × 720, câmera com zoom 2, controles de teclado, controle e toque (2026-11-04)
 - ✅ Vale Esmeralda de testes (80 × 60 tiles), sempre igual: clareira com fogueira, Pradaria, Floresta Antiga, Campo de Pedras e Lago Espelhado, ligados por caminhos (2026-11-04)
 - ✅ Tiles, herói, criaturas, cristais e efeitos desenhados no código, provisórios até a arte chegar (2026-11-04)
-- ✅ Testes: 27 das regras e do mapa (`testes/rodar.gd`) e 1 que joga sozinho (`testes/teste_jogo.gd`) (2026-11-04)
+- ✅ Testes: 27 das regras e do mapa (`testes/rodar.gd`), 1 que joga sozinho (`testes/teste_jogo.gd`) e 1 do herói na vila (`testes/teste_vila.gd`) (2026-11-04)
 - ✅ Versão do navegador montada na VPS sem o editor (`publicar/montar-web.sh`), conferida rodando fora do projeto (2026-11-04)
 - 🔶 Repositório `github.com/scaramelo1/mythera` (falta o dono criar no GitHub e dar o push)
 - ⬜ Publicar em fsadesigners.com.br/mythera e o dono testar no PC e no celular
 
-## 2. Primeiro modo de jogo: explorar e capturar
+## 1b. Vila (mapa desenhado enviado pelo dono)
+
+- ✅ Mapa da vila recebido em pixel art (1536 × 1024), em `assets/mapas/vila.webp`; original em `arte-original/vila-mapa.webp` (2026-11-04)
+- ✅ Onde dá para andar: caminhos, praça, subida do salão, píer, ponte, acampamento, entrada da caverna e ruínas; casas, fonte, estátuas, barracas, água e árvores bloqueiam (`ferramentas/gerar_mascara_vila.py` → `dados/vila_mascara.json`) (2026-11-04)
+- 🔶 Herói andando na vila com a câmera seguindo; a vila é a tela inicial do jogo, por enquanto só com o herói (2026-11-04) (falta o dono jogar)
+- ⬜ Decidir se o herói anda também pela grama (hoje só caminhos e áreas abertas)
+- ⬜ Trocar o símbolo do telhado do prédio vermelho (lembra a Poké Bola) e o próprio prédio, que lembra um Centro Pokémon
+- ⬜ Entrar nas casas, na loja e no salão
+- ⬜ Moradores, criaturas e a saída da vila para o Vale Esmeralda (o modo de captura continua em `cenas/jogo.tscn`)
+
+## 2. Primeiro modo de jogo: explorar e capturar (Vale Esmeralda, `cenas/jogo.tscn`)
 
 - 🔶 Herói: anda em 8 direções, ataca de perto (Espaço), esquiva (Shift) e lança o Núcleo (G) (2026-11-04) (falta o dono jogar)
 - 🔶 Criaturas selvagens andando livres no mapa, com temperamento: Aquori foge, Mosshell revida, Flarin ataca quem chega perto (2026-11-04)
