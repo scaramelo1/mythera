@@ -1,4 +1,4 @@
-# Feralis (nome provisório)
+# Mythera — O Despertar dos Guardiões
 
 Jogo de mundo aberto para caçar, capturar e treinar criaturas. As criaturas sobem de nível e evoluem; o herói também sobe de nível, aprende habilidades e fica mais forte.
 
