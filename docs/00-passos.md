@@ -1,134 +1,102 @@
-# Feralis: passos
+# Mythera: passos
 
 Lista de tudo o que vamos fazer. Cada passo concluído recebe ✅ e a lista atualizada é mostrada ao dono.
 
 Legenda: ✅ feito | 🔶 em andamento | ⬜ falta
 
-Regras: jogo de captura de criaturas em mundo aberto, mas tudo original (nome, criaturas, arte, músicas e mapa). Sem pagar para vencer e sem caixa surpresa. Na VPS só código; o editor do Godot roda no PC. Detalhes em `01-conceito.md`.
+Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito.md` e analisado em `02-analise-gdd.md`. Tudo original: nome, criaturas, arte, músicas e mapa. Sem pagar para vencer e sem caixa surpresa.
 
-## 1. Definir o jogo
+## 0. Planejamento
 
-- ✅ Ideia geral e laço principal: explorar, lutar, capturar, treinar, evoluir (`01-conceito.md`) (2026-11-04)
-- ⬜ Nome definitivo e ícone (hoje: "Feralis", provisório)
-- ⬜ Confirmar o motor (recomendado: Godot 4) e o visual (recomendado: 2D visto de cima, pixel art)
-- ⬜ Confirmar onde o jogo roda primeiro: celular Android, PC ou os dois
-- ⬜ Confirmar o combate: tempo real no mapa (recomendado) ou por turnos
-- ⬜ História curta e objetivo final (ex.: proteger o mundo dos guardiões corrompidos)
-- ⬜ Lista dos 10 tipos e a tabela de vantagens e fraquezas
-- ⬜ Primeiras 30 criaturas: nome, tipo, atributos, golpes, traço e de onde evoluem
-- ⬜ Regras de evolução: por nível, vínculo, item, hora do dia e região
-- ⬜ Herói: atributos, níveis, árvore de habilidades (caçador, guerreiro, domador) e equipamento
-- ⬜ Fórmulas: dano, captura, experiência por nível e ganho de vínculo
-- ⬜ Mapa do mundo no papel: regiões, nível sugerido de cada uma e quais criaturas vivem em cada lugar
-- ⬜ Documento de regras (`02-regras.md`) aprovado pelo dono
+- ✅ Pasta do projeto e primeira lista de passos (2026-11-04)
+- ✅ GDD Mythera 1.0 recebido e estudado; análise em `02-analise-gdd.md` (2026-11-04)
+- ⬜ Escolher o motor: Unreal 5 com C++, Unreal 5 só com Blueprints ou Godot 4 em 3D
+- ⬜ Conferir se o PC do dono aguenta o motor escolhido
+- ⬜ Pesquisar o nome "Mythera" (marca e lojas) e confirmar
+- ⬜ Redesenhar o Voltiri para não lembrar o Pikachu
+- ⬜ Tabela de elementos (vantagens e fraquezas) e fórmula de dano
+- ⬜ Variação individual de atributos (bônus aleatório de cada criatura)
+- ⬜ Regras do protótipo aprovadas (`03-regras.md`)
 
-## 2. Ferramentas
+## 1. Semana 1: fundação
 
-- ✅ Pasta do projeto em `/var/www/feralis`, com a lista de passos e o conceito (2026-11-04)
-- ⬜ Repositório `github.com/scaramelo1/feralis` (o dono cria no GitHub e dá o push)
-- ⬜ Godot 4 instalado no PC do dono
-- ⬜ Projeto Godot criado (pastas, resolução, controles de teclado, controle e toque)
-- ⬜ Testes das regras com GUT (ferramenta de testes do Godot), rodando no PC
+- ⬜ Instalar o motor e o Blender no PC
+- ⬜ Criar o projeto em terceira pessoa, para PC
+- ⬜ Estrutura de pastas e prefixos (BP_, WBP_, ST_, DT_, ABP_, DA_ ou o equivalente no motor escolhido)
+- ⬜ Repositório no GitHub (com Git LFS se for Unreal)
+- ⬜ Mapa de testes com terreno e obstáculos
+- ⬜ Herói: andar (WASD), câmera no mouse, pular (Espaço) e esquivar (Shift)
 
-## 3. Motor do jogo, sem gráficos
+## 2. Semana 2: primeira criatura
 
-- ⬜ Criatura: espécie, nível, atributos, golpes, vida, experiência e vínculo
-- ⬜ Tabela de tipos e cálculo de dano
-- ⬜ Fórmula de captura
-- ⬜ Experiência, subir de nível e aprender golpes
-- ⬜ Evolução com todas as condições
-- ⬜ Herói: nível, pontos de habilidade e equipamento
-- ⬜ Equipe de 6 e caixa do acampamento
-- ⬜ Inventário, itens e loja
-- ⬜ Salvar e carregar o jogo
-- ⬜ Testes de todas as regras
+- ⬜ Criatura base, com modelo provisório e colisão
+- ⬜ Vida, ataque, defesa, nível e taxa de captura
+- ⬜ Patrulha e perseguição simples
+- ⬜ Dano básico (botão esquerdo e Q)
+- ⬜ Barra de vida em cima da criatura
 
-## 4. Primeiro protótipo jogável (uma região pequena)
+## 3. Semana 3: captura e coleção
 
-- ⬜ Herói andando no mapa, com câmera seguindo
-- ⬜ Uma região de teste com 5 criaturas andando livres
-- ⬜ Criaturas com comportamento: andar, fugir, atacar, dormir à noite
-- ⬜ Combate em tempo real: herói ataca e esquiva, criaturas usam golpes
-- ⬜ Chamar e recolher criaturas da equipe na luta
-- ⬜ Jogar a esfera e capturar, com animação de tentativa
-- ⬜ Tela da equipe e da criatura (atributos, golpes, nível)
-- ⬜ Subir de nível e evoluir na tela, com animação
-- ⬜ Salvar no aparelho
-- ⬜ O dono jogar e aprovar a sensação do combate e da captura
+- ⬜ Dados da espécie separados dos dados de cada criatura capturada
+- ⬜ Núcleo de Vínculo no inventário
+- ⬜ Captura de perto com a tecla G e a fórmula do GDD
+- ⬜ Testes obrigatórios: sucesso, falha, sem núcleos, fora do alcance, equipe cheia e salvar depois de capturar
+- ⬜ Tela da coleção
+- ⬜ Salvar e carregar as criaturas capturadas
 
-## 5. Mundo aberto
+## 4. Semana 4: progressão e primeira versão para testar
 
-- ⬜ Mapa contínuo dividido em blocos que carregam e descarregam conforme o herói anda
-- ⬜ 4 regiões iniciais (ex.: floresta, praia, montanha, deserto), com nível crescente
-- ⬜ Dia e noite e clima (chuva, neblina, neve) mudando as criaturas que aparecem
-- ⬜ Pontos de viagem rápida
-- ⬜ Montaria: algumas criaturas levam o herói (andar mais rápido, nadar, voar depois)
-- ⬜ Minimapa e mapa completo, com marcações
-- ⬜ Cavernas e lugares escondidos com criaturas raras
-- ⬜ Desempenho no celular: testar num aparelho simples
+- ⬜ Experiência e níveis (50 × L^1,5) para herói e criatura
+- ⬜ Uma evolução com troca de aparência
+- ⬜ Invocar e recolher a companheira (R) e dar comandos (F)
+- ⬜ Companheira: seguir, detectar inimigo, atacar ou defender, usar habilidade e voltar
+- ⬜ Inimigo mais forte (minichefe)
+- ⬜ Versão para Windows
+- ⬜ Conferir os critérios do protótipo pronto (seção 15 do GDD)
 
-## 6. Progressão e conteúdo
+## 5. Primeira região: Vale Esmeralda (cerca de 500 × 500 m)
 
-- ⬜ Árvore de habilidades do herói funcionando
-- ⬜ Equipamentos (armas, roupas, acessórios) e fabricação
-- ⬜ Tipos de esfera (comum, boa, ótima, especiais por tipo)
-- ⬜ Missões principais (história) e missões secundárias
-- ⬜ Personagens do mundo (vendedores, treinadores, mestres)
-- ⬜ Chefes: guardiões de cada região e criaturas lendárias
-- ⬜ Registro de criaturas (vistas e capturadas), com recompensas
-- ⬜ Chegar a 100 criaturas
+- ⬜ Terreno, vila pequena e pontos de interesse
+- ⬜ Dia e noite, mudando as criaturas que aparecem
+- ⬜ Geradores de criaturas por habitat e horário
+- ⬜ Flarin, Aquori e Mosshell completos (fogo, água e natureza)
+- ⬜ Arremesso do núcleo (projétil), com efeitos e animação
 
-## 7. Acampamento
+## 6. Herói e sobrevivência leve
 
-- ⬜ Base do jogador, num lugar escolhido do mapa
-- ⬜ Criaturas trabalhando conforme o tipo (coletar, minerar, plantar, cozinhar)
-- ⬜ Construções e melhorias
-- ⬜ Cuidar das criaturas (comida e descanso), que sobe o vínculo
+- ⬜ Atributos vigor, força, essência e agilidade, com pontos a cada nível
+- ⬜ Trilhas de talentos: guerreiro, vinculador, explorador, elementalista e artesão
+- ⬜ Coleta de madeira, pedra e cristais de Essência
+- ⬜ Estação de fabricação: núcleos de vários níveis e poções
+- ⬜ Base com baú e ponto de descanso
+- ⬜ Armaduras e acessórios que mudam a aparência do herói
+
+## 7. Missões e história
+
+- ⬜ Missões guardadas como dados, sem reprogramar a lógica
+- ⬜ Prólogo (Despertar do Vinculador) e Capítulo I (Primeiro Vínculo)
+- ⬜ Capítulo II (Ecos da Ruptura): ruínas no Vale Esmeralda
+- ⬜ Missões secundárias: resgate, coleta, exploração e combate
 
 ## 8. Arte e som
 
-- ⬜ Estilo visual definido com uma tela de exemplo
-- ⬜ Herói com animações (andar, correr, atacar, esquivar, jogar a esfera)
-- ⬜ Criaturas com animações (parada, andar, atacar, levar dano, desmaiar), e as formas evoluídas
-- ⬜ Blocos do mapa de cada região
-- ⬜ Efeitos dos golpes por tipo
-- ⬜ Telas e botões
-- ⬜ Músicas por região, de batalha e de chefe
-- ⬜ Sons de golpes, captura e evolução
+- ⬜ Arte própria das criaturas (as imagens do GDD são só inspiração)
+- ⬜ Modelos, animações e formas evoluídas
+- ⬜ Herói com animações
+- ⬜ Telas e interface
+- ⬜ Músicas e sons
 
-## 9. Servidor e contas
+## 9. Conteúdo do jogo completo
 
-- ⬜ Servidor Node no fsadesigners.com.br, como o `prancheta-api`
-- ⬜ Login com Google (e Sign in with Apple, exigido pela Apple)
-- ⬜ Salvamento na nuvem
-- ⬜ Servidor conferir as ações importantes (captura, experiência, itens) para evitar trapaça
-- ⬜ Exclusão de conta dentro do jogo (exigido pelas lojas)
+- ⬜ 20 primeiras criaturas e depois os 10 elementos
+- ⬜ Capítulos III a V
+- ⬜ Regiões: Terras de Ignis, Cordilheira Glacial, Floresta de Lumina, Deserto de Arkan e Ilhas Celestiais
+- ⬜ Montarias e criaturas trabalhando na base
+- ⬜ Guardiões e chefes
 
-## 10. Parte online
+## 10. Lançamento
 
-- ⬜ Amigos por código
-- ⬜ Trocar criaturas
-- ⬜ Batalhas entre jogadores
-- ⬜ Modo cooperativo: explorar e enfrentar chefes juntos
-- ⬜ Ranking
-
-## 11. Testes de verdade
-
-- ⬜ APK para o dono e amigos
-- ⬜ Página de download no site
-- ⬜ Ajustar equilíbrio: dano, captura, experiência e dificuldade das regiões
-- ⬜ Corrigir travamentos e desempenho
-
-## 12. Lançamento
-
-- ⬜ Google Play: conta de desenvolvedor e teste fechado com 12 pessoas por 14 dias
-- ⬜ App Store: Apple Developer e build do iPhone
-- ⬜ Steam (opcional, para PC)
-- ⬜ Política de privacidade e classificação etária
+- ⬜ Testes com amigos e ajuste de equilíbrio
 - ⬜ Página do jogo no site, trailer e imagens
-
-## 13. Depois de lançar
-
-- ⬜ Regiões novas e criaturas novas
-- ⬜ Eventos de época com criaturas especiais
-- ⬜ Itens visuais com dinheiro real (sem vantagem no jogo)
+- ⬜ Steam (página, classificação etária e política de privacidade)
+- ⬜ Celular e online só depois, se fizer sentido

@@ -1,49 +1,17 @@
-# Feralis: conceito
+# Mythera: conceito
 
-> Nome provisório. O dono escolhe o nome definitivo no passo 1.
+O documento principal é o GDD do dono: `referencia/mythera-gdd-1.0.pdf` (Mythera — O Despertar dos Guardiões, versão 1.0). A análise e os ajustes estão em `02-analise-gdd.md`.
 
-## A ideia em uma frase
+## Resumo do GDD
 
-Um explorador anda livre por um mundo aberto, encontra criaturas selvagens, enfraquece e captura cada uma, treina a equipe, faz as criaturas evoluírem e fica mais forte junto com elas.
-
-## O que torna o jogo nosso
-
-- **Herói que luta junto.** O herói não fica só olhando: ele tem vida, nível, habilidades e equipamento, e entra no combate ao lado das criaturas.
-- **Vínculo.** Cada criatura tem um nível de vínculo com o herói, que sobe com batalhas, comida e cuidado. Algumas evoluções só acontecem com vínculo alto.
-- **Criaturas que trabalham.** No acampamento, as criaturas capturadas coletam recursos, constroem e plantam, cada uma de acordo com o tipo (fogo cozinha, terra minera, planta cultiva).
-- **Mundo vivo.** Dia e noite, clima e estações mudam quais criaturas aparecem e onde.
-
-## Laço principal do jogo
-
-1. Explorar o mundo aberto.
-2. Encontrar uma criatura (ela aparece andando no mapa, sem tela de encontro aleatório).
-3. Lutar para enfraquecer.
-4. Jogar a esfera de captura (a chance aumenta com a vida baixa, efeitos e esferas melhores).
-5. Ganhar experiência: criaturas e herói sobem de nível.
-6. Evoluir criaturas, melhorar equipamento e o acampamento.
-7. Abrir regiões novas, mais difíceis, com criaturas mais raras.
-
-## Sistemas
-
-| Sistema | Resumo |
-|---|---|
-| Criaturas | Espécie, tipo (1 ou 2), atributos base, nível 1 a 100, golpes, traço passivo, vínculo |
-| Tipos | 10 tipos iniciais com vantagens e fraquezas (fogo, água, planta, terra, ar, raio, gelo, sombra, luz, metal) |
-| Evolução | Por nível, por vínculo, por item, por hora do dia ou por região |
-| Herói | Nível, árvore de habilidades (caçador, guerreiro, domador), equipamento e montaria |
-| Combate | Tempo real no mapa: o herói ataca e esquiva, e comanda até 3 criaturas ativas |
-| Captura | Chance calculada por vida, raridade, nível, esfera e habilidades do herói |
-| Equipe | 6 na equipe; o resto vai para o acampamento |
-| Mundo | Mapa contínuo dividido em blocos que carregam aos poucos; regiões com nível sugerido |
-| Chefes | Criaturas lendárias e guardiões de região |
-| Acampamento | Base do jogador, criaturas trabalhando, produção e construções |
-| Economia | Moedas do jogo, loja, fabricar esferas e itens |
-
-## Decisões técnicas (recomendação)
-
-- **Motor: Godot 4.** Mundo aberto em tempo real precisa de um motor de jogo. O Expo/React Native, usado nos outros apps, não aguenta mundo aberto com combate em tempo real. O Godot é grátis, gera Android, iPhone e PC, e os arquivos do projeto são texto, então dá para escrever o código na VPS e abrir no PC.
-- **Visual: 2D visto de cima, em pixel art.** É o caminho viável para um projeto pequeno. Um mundo 3D do tamanho dos grandes jogos do gênero exige uma equipe grande e anos de trabalho. Dá para ir para 3D numa segunda versão, depois de o jogo estar provado.
-- **Primeiro só local (um jogador), depois online.** O jogo nasce com salvamento no aparelho. O modo online (trocas, batalhas entre jogadores, cooperativo) vem depois, com servidor Node no fsadesigners.com.br.
-- **Regras separadas do visual.** Fórmulas de dano, captura, experiência e evolução ficam em código puro, com testes, para depois o servidor reaproveitar.
-- **Na VPS só código.** O editor do Godot e os testes visuais rodam no PC (a VPS tem 1 GB de RAM).
-- **Sem pagar para vencer e sem caixa surpresa.** Dinheiro real, se houver, só para visual (roupas, cores de esfera, decoração do acampamento).
+- RPG de ação em mundo aberto, 3D cartoon, terceira pessoa, um jogador, PC primeiro, em português.
+- História: a Ruptura dividiu a Essência Primordial; o herói é um Vinculador e precisa descobrir a origem da Ruptura e encontrar os guardiões.
+- 5 pilares: exploração livre, captura com estratégia, evolução dupla (herói e criaturas), combate cooperativo e mundo vivo.
+- 10 elementos: fogo, água, natureza, terra, vento, raio, gelo, luz, sombra e arcano. O protótipo usa só fogo, água e natureza.
+- Captura com o Núcleo de Vínculo: P = limite(B + 0,40 × (1 − H) + N + S + V, entre 5% e 95%).
+- Evolução em 3 estágios (1–17, 18–39, 40–60), também por amizade, item ou desafio.
+- Experiência para o próximo nível: 50 × L^1,5. Atributo: A0 + G × (L − 1).
+- Herói até o nível 60, com vigor, força, essência e agilidade e 5 trilhas de talentos (guerreiro, vinculador, explorador, elementalista, artesão).
+- Mundo final com 6 regiões; o protótipo tem uma região de cerca de 500 × 500 m, com vila, dia e noite e coleta.
+- Sobrevivência leve: coletar, fabricar núcleos e poções, base com baú e descanso.
+- História em prólogo e 5 capítulos; missões guardadas como dados.
