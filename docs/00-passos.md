@@ -10,8 +10,9 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 
 - ✅ Pasta do projeto e primeira lista de passos (2026-11-04)
 - ✅ GDD Mythera 1.0 recebido e estudado; análise em `02-analise-gdd.md` (2026-11-04)
-- ⬜ Escolher o motor: Unreal 5 com C++, Unreal 5 só com Blueprints ou Godot 4 em 3D
-- ⬜ Conferir se o PC do dono aguenta o motor escolhido
+- ✅ Motor: Godot 4 em 3D (escolha do dono em 2026-11-04; versão estável atual: 4.7.2)
+- ⬜ Plataformas: navegador primeiro e Android depois, com o renderizador Compatibility (o único que roda no navegador) desde o começo
+- ⬜ Controles de toque na tela, além de teclado, mouse e controle
 - ⬜ Pesquisar o nome "Mythera" (marca e lojas) e confirmar
 - ⬜ Redesenhar o Voltiri para não lembrar o Pikachu
 - ⬜ Tabela de elementos (vantagens e fraquezas) e fórmula de dano
@@ -51,7 +52,7 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 - ⬜ Invocar e recolher a companheira (R) e dar comandos (F)
 - ⬜ Companheira: seguir, detectar inimigo, atacar ou defender, usar habilidade e voltar
 - ⬜ Inimigo mais forte (minichefe)
-- ⬜ Versão para Windows
+- ⬜ Versão para o navegador, publicada no site para testar
 - ⬜ Conferir os critérios do protótipo pronto (seção 15 do GDD)
 
 ## 5. Primeira região: Vale Esmeralda (cerca de 500 × 500 m)
@@ -98,5 +99,7 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 
 - ⬜ Testes com amigos e ajuste de equilíbrio
 - ⬜ Página do jogo no site, trailer e imagens
-- ⬜ Steam (página, classificação etária e política de privacidade)
-- ⬜ Celular e online só depois, se fizer sentido
+- ⬜ Android: APK para testes e AAB para a Google Play (teste fechado com 12 pessoas por 14 dias)
+- ⬜ Classificação etária e política de privacidade
+- ⬜ PC (Steam ou itch.io), se fizer sentido
+- ⬜ Online só depois, se fizer sentido
