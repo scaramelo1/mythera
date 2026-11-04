@@ -86,7 +86,10 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 
 - ⬜ Arte própria das criaturas (as imagens do GDD são só inspiração)
 - ⬜ Modelos, animações e formas evoluídas
-- ⬜ Herói com animações
+- 🔶 Herói provisório com o pacote Universal Base Characters da Quaternius (CC0): masculino e feminino, 65 ossos, texturas reduzidas para o navegador, em `assets/modelos/heroi/` (2026-11-04) (falta o dono ver no PC)
+- ⬜ Animações do herói (parado, andar, pular, esquivar), de preferência o pacote de animações "Universal" da Quaternius, feito para o mesmo esqueleto
+- ⬜ Roupas do herói (a base vem só com roupa de baixo)
+- ⬜ Criaturas provisórias (o pacote recebido só tem humanos)
 - ⬜ Telas e interface
 - ⬜ Músicas e sons
 

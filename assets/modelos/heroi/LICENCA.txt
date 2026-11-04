@@ -1,0 +1,5 @@
+Universal Base Characters [Standard] — Quaternius (https://quaternius.com)
+Licença: CC0 1.0 Universal (domínio público). Pode usar, alterar e vender sem dar crédito.
+Crédito opcional nos créditos do jogo: "Personagens base por Quaternius".
+Alterações no Mythera: texturas reduzidas (1024/512/256 px), normais no padrão OpenGL (pasta "Normals Unity - Godot"),
+corrigidos os nomes de textura que faltavam no pacote (T_Hair_1_Normal_png.png, T_Eye_Normal_png.png).

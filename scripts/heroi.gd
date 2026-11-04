@@ -14,6 +14,21 @@ const SENSIBILIDADE_CONTROLE := 2.5
 const CAMERA_MIN := deg_to_rad(-65.0)
 const CAMERA_MAX := deg_to_rad(25.0)
 
+## Modelos 3D do herói (Quaternius, CC0). Sem o modelo importado (ex.: testes na VPS), fica o boneco simples.
+const MODELOS := {
+	"masculino": "res://assets/modelos/heroi/heroi_masculino.gltf",
+	"feminino": "res://assets/modelos/heroi/heroi_feminino.gltf",
+}
+## Nomes das animações que o herói procura no modelo (entram quando chegar o pacote de animações).
+const ANIMACOES := {
+	"parado": ["parado", "Idle", "Idle_Loop"],
+	"andar": ["andar", "Walk", "Walk_Loop", "Jog_Fwd_Loop"],
+	"pular": ["pular", "Jump", "Jump_Loop"],
+	"esquivar": ["esquivar", "Roll", "Dodge"],
+}
+
+@export_enum("masculino", "feminino") var aparencia := "masculino"
+
 @onready var pivo: Node3D = $Pivo
 @onready var braco: SpringArm3D = $Pivo/Braco
 @onready var corpo: Node3D = $Corpo
@@ -23,12 +38,40 @@ var tempo_esquiva := 0.0
 var espera_esquiva := 0.0
 var direcao_esquiva := Vector3.ZERO
 var esquivando := false
+var animacao: AnimationPlayer = null
 
 
 func _ready() -> void:
 	add_to_group("camera_toque")
 	braco.add_excluded_object(get_rid())
 	braco.rotation.x = deg_to_rad(-15.0)
+	_carregar_modelo()
+
+
+func _carregar_modelo() -> void:
+	var caminho: String = MODELOS.get(aparencia, "")
+	if caminho == "" or not ResourceLoader.exists(caminho):
+		return
+	var cena := load(caminho) as PackedScene
+	if cena == null:
+		return
+	var modelo := cena.instantiate()
+	modelo.name = "Modelo"
+	modelo.rotation.y = PI  # o modelo olha para +Z; o herói olha para -Z
+	corpo.add_child(modelo)
+	for parte in ["Tronco", "Cabeca", "Mochila"]:
+		corpo.get_node(parte).visible = false
+	animacao = modelo.find_child("AnimationPlayer", true, false) as AnimationPlayer
+
+
+func _tocar(estado: String) -> void:
+	if animacao == null:
+		return
+	for nome in ANIMACOES.get(estado, []):
+		if animacao.has_animation(nome):
+			if animacao.current_animation != nome:
+				animacao.play(nome, 0.15)
+			return
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -88,6 +131,15 @@ func _physics_process(delta: float) -> void:
 		corpo.rotation.y = lerp_angle(corpo.rotation.y, atan2(-plano.x, -plano.z), 12.0 * delta)
 
 	move_and_slide()
+
+	if esquivando:
+		_tocar("esquivar")
+	elif not is_on_floor():
+		_tocar("pular")
+	elif plano.length() > 0.5:
+		_tocar("andar")
+	else:
+		_tocar("parado")
 
 	if global_position.y < -30.0:
 		_voltar_ao_inicio()
