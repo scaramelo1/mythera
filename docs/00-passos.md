@@ -11,7 +11,7 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 - ✅ Pasta do projeto e primeira lista de passos (2026-11-04)
 - ✅ GDD Mythera 1.0 recebido e estudado; análise em `02-analise-gdd.md` (2026-11-04)
 - ✅ Motor: Godot 4 em 3D (escolha do dono em 2026-11-04; versão estável atual: 4.7.2)
-- ⬜ Plataformas: navegador primeiro e Android depois, com o renderizador Compatibility (o único que roda no navegador) desde o começo
+- ⬜ Plataformas: navegador primeiro, depois Android e iPhone, com o renderizador Compatibility (o único que roda no navegador) desde o começo
 - ⬜ Controles de toque na tela, além de teclado, mouse e controle
 - ⬜ Pesquisar o nome "Mythera" (marca e lojas) e confirmar
 - ⬜ Redesenhar o Voltiri para não lembrar o Pikachu
@@ -100,6 +100,7 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 - ⬜ Testes com amigos e ajuste de equilíbrio
 - ⬜ Página do jogo no site, trailer e imagens
 - ⬜ Android: APK para testes e AAB para a Google Play (teste fechado com 12 pessoas por 14 dias)
+- ⬜ iPhone: Apple Developer (US$ 99 por ano) e build feita num Mac com Xcode (Mac alugado na nuvem ou GitHub Actions com macOS); enquanto isso, o iPhone joga pelo navegador
 - ⬜ Classificação etária e política de privacidade
 - ⬜ PC (Steam ou itch.io), se fizer sentido
 - ⬜ Online só depois, se fizer sentido
