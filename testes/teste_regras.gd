@@ -130,3 +130,15 @@ func teste_arquivo_estragado() -> void:
 	igual(Salvamento.carregar(caminho), {}, "arquivo estragado vira vazio")
 	Salvamento.apagar(caminho)
 	igual(Salvamento.carregar(caminho), {}, "sem arquivo vira vazio")
+
+
+func teste_heroi_sobe_de_nivel() -> void:
+	var HeroiDados = load("res://scripts/regras/heroi_dados.gd")
+	var h = HeroiDados.new()
+	igual(h.vida, 60, "vida inicial")
+	h.receber_dano(20)
+	igual(h.ganhar_xp(50), 1, "sobe 1 nível com 50 de experiência")
+	igual(h.vida_maxima(), 68, "vida máxima no nível 2")
+	igual(h.vida, 48, "dano continua, vida nova entra")
+	var copia = HeroiDados.de_dicionario(h.para_dicionario())
+	igual(copia.para_dicionario(), h.para_dicionario(), "salvar e carregar")

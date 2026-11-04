@@ -1,5 +1,5 @@
 {
-  "_sobre": "Espécies do protótipo. Cada atributo é [valor no nível 1, crescimento por nível]: A(L) = piso((A0 + G × (L − 1)) × (1 + bônus individual)). Valores para balancear nos testes.",
+  "_sobre": "Espécies do protótipo. Atributos: [valor no nível 1, crescimento por nível]: A(L) = piso((A0 + G × (L − 1)) × (1 + bônus individual)). 'mundo' guarda o que é do mapa 2D: tamanho (raio em px), velocidade (px/s), temperamento (timida foge, neutra revida, agressiva ataca quem chega perto) e cores. Valores para balancear nos testes.",
   "flarin": {
     "nome": "Flarin",
     "descricao": "Raposinha de fogo, rápida e impulsiva.",
@@ -8,13 +8,55 @@
     "raridade": "comum",
     "taxa_captura": 0.25,
     "atributos": {
-      "vida": [40, 4.0], "ataque": [14, 2.2], "defesa": [9, 1.2],
-      "poder": [13, 2.0], "resistencia": [9, 1.2], "velocidade": [15, 1.5]
+      "vida": [
+        40,
+        4.0
+      ],
+      "ataque": [
+        14,
+        2.2
+      ],
+      "defesa": [
+        9,
+        1.2
+      ],
+      "poder": [
+        13,
+        2.0
+      ],
+      "resistencia": [
+        9,
+        1.2
+      ],
+      "velocidade": [
+        15,
+        1.5
+      ]
     },
     "evolui_para": "flarvex",
     "nivel_evolucao": 18,
-    "habitat": ["campo", "rochas"],
-    "horario": ["dia"]
+    "habitat": [
+      "campo",
+      "rochas"
+    ],
+    "horario": [
+      "dia"
+    ],
+    "mundo": {
+      "forma": "raposa",
+      "raio": 11,
+      "velocidade": 95,
+      "temperamento": "agressiva",
+      "cor": "#f07a2a",
+      "cor2": "#ffd23f",
+      "golpe": {
+        "nome": "Brasa",
+        "elemento": "fogo",
+        "poder": 40,
+        "alcance": 34,
+        "recarga": 1.2
+      }
+    }
   },
   "flarvex": {
     "nome": "Flarvex",
@@ -24,13 +66,56 @@
     "raridade": "incomum",
     "taxa_captura": 0.12,
     "atributos": {
-      "vida": [45, 4.8], "ataque": [18, 2.6], "defesa": [11, 1.4],
-      "poder": [17, 2.4], "resistencia": [11, 1.4], "velocidade": [19, 1.8]
+      "vida": [
+        45,
+        4.8
+      ],
+      "ataque": [
+        18,
+        2.6
+      ],
+      "defesa": [
+        11,
+        1.4
+      ],
+      "poder": [
+        17,
+        2.4
+      ],
+      "resistencia": [
+        11,
+        1.4
+      ],
+      "velocidade": [
+        19,
+        1.8
+      ]
     },
     "evolui_para": "",
     "nivel_evolucao": 0,
-    "habitat": ["campo", "rochas"],
-    "horario": ["dia", "tarde"]
+    "habitat": [
+      "campo",
+      "rochas"
+    ],
+    "horario": [
+      "dia",
+      "tarde"
+    ],
+    "mundo": {
+      "forma": "raposa",
+      "raio": 15,
+      "velocidade": 110,
+      "temperamento": "agressiva",
+      "cor": "#d9481c",
+      "cor2": "#ffb02e",
+      "golpe": {
+        "nome": "Chama Veloz",
+        "elemento": "fogo",
+        "poder": 55,
+        "alcance": 40,
+        "recarga": 1.0
+      }
+    }
   },
   "aquori": {
     "nome": "Aquori",
@@ -40,13 +125,56 @@
     "raridade": "comum",
     "taxa_captura": 0.25,
     "atributos": {
-      "vida": [48, 4.5], "ataque": [10, 1.5], "defesa": [11, 1.5],
-      "poder": [12, 1.8], "resistencia": [13, 1.6], "velocidade": [11, 1.2]
+      "vida": [
+        48,
+        4.5
+      ],
+      "ataque": [
+        10,
+        1.5
+      ],
+      "defesa": [
+        11,
+        1.5
+      ],
+      "poder": [
+        12,
+        1.8
+      ],
+      "resistencia": [
+        13,
+        1.6
+      ],
+      "velocidade": [
+        11,
+        1.2
+      ]
     },
     "evolui_para": "",
     "nivel_evolucao": 0,
-    "habitat": ["rio", "lago"],
-    "horario": ["dia", "noite"]
+    "habitat": [
+      "rio",
+      "lago"
+    ],
+    "horario": [
+      "dia",
+      "noite"
+    ],
+    "mundo": {
+      "forma": "lontra",
+      "raio": 11,
+      "velocidade": 80,
+      "temperamento": "timida",
+      "cor": "#3a8fe0",
+      "cor2": "#bfe6ff",
+      "golpe": {
+        "nome": "Jato d'Água",
+        "elemento": "agua",
+        "poder": 40,
+        "alcance": 60,
+        "recarga": 1.4
+      }
+    }
   },
   "mosshell": {
     "nome": "Mosshell",
@@ -56,12 +184,55 @@
     "raridade": "comum",
     "taxa_captura": 0.22,
     "atributos": {
-      "vida": [55, 5.0], "ataque": [10, 1.4], "defesa": [15, 2.0],
-      "poder": [10, 1.5], "resistencia": [13, 1.8], "velocidade": [8, 1.0]
+      "vida": [
+        55,
+        5.0
+      ],
+      "ataque": [
+        10,
+        1.4
+      ],
+      "defesa": [
+        15,
+        2.0
+      ],
+      "poder": [
+        10,
+        1.5
+      ],
+      "resistencia": [
+        13,
+        1.8
+      ],
+      "velocidade": [
+        8,
+        1.0
+      ]
     },
     "evolui_para": "",
     "nivel_evolucao": 0,
-    "habitat": ["floresta"],
-    "horario": ["dia", "tarde", "noite"]
+    "habitat": [
+      "floresta"
+    ],
+    "horario": [
+      "dia",
+      "tarde",
+      "noite"
+    ],
+    "mundo": {
+      "forma": "tartaruga",
+      "raio": 12,
+      "velocidade": 50,
+      "temperamento": "neutra",
+      "cor": "#4f9a3c",
+      "cor2": "#8a6a3a",
+      "golpe": {
+        "nome": "Raiz",
+        "elemento": "natureza",
+        "poder": 45,
+        "alcance": 30,
+        "recarga": 1.6
+      }
+    }
   }
 }

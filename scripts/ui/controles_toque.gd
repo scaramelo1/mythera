@@ -1,24 +1,23 @@
 extends Control
 ## Controles na tela para celular e tablet (navegador, Android e iPhone):
-## analógico à esquerda, arrasto à direita para girar a câmera e botões de ação.
-## Aceita vários dedos ao mesmo tempo. Aparece sozinho quando a tela é tocada.
+## analógico à esquerda e botões de ação à direita. Vários dedos ao mesmo tempo.
+## Aparece sozinho quando a tela é tocada.
 
-const RAIO_ANALOGICO := 90.0
-const RAIO_BOTAO := 46.0
+const RAIO_ANALOGICO := 80.0
+const RAIO_BOTAO := 44.0
 
 const BOTOES := [
-	{"acao": "pular", "texto": "Pular", "pos": Vector2(-90, -110)},
-	{"acao": "esquivar", "texto": "Esquiva", "pos": Vector2(-200, -70)},
-	{"acao": "ataque", "texto": "Atacar", "pos": Vector2(-120, -230)},
-	{"acao": "capturar", "texto": "Capturar", "pos": Vector2(-240, -190)},
-	{"acao": "interagir", "texto": "Usar", "pos": Vector2(-330, -80)},
+	{"acao": "atacar", "texto": "Atacar", "pos": Vector2(-90, -100), "raio": 54.0},
+	{"acao": "capturar", "texto": "Núcleo", "pos": Vector2(-220, -80)},
+	{"acao": "esquivar", "texto": "Esquiva", "pos": Vector2(-110, -230)},
+	{"acao": "comandar", "texto": "Comandar", "pos": Vector2(-235, -200)},
 ]
 
+var hud = null
 var dedo_analogico := -1
 var centro_analogico := Vector2.ZERO
 var ponta_analogico := Vector2.ZERO
-var dedo_camera := -1
-var dedos_botoes := {}  # índice do dedo -> ação
+var dedos_botoes := {}
 
 
 func _ready() -> void:
@@ -28,35 +27,35 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if hud != null and hud.painel_aberto():
+		return
 	if event is InputEventScreenTouch:
-		if not visible:
-			visible = true
+		visible = true
 		if event.pressed:
 			_tocou(event.index, event.position)
 		else:
 			_soltou(event.index)
 		queue_redraw()
-	elif event is InputEventScreenDrag:
-		if event.index == dedo_analogico:
-			ponta_analogico = event.position
-			_aplicar_analogico()
-			queue_redraw()
-		elif event.index == dedo_camera:
-			get_tree().call_group("camera_toque", "girar_camera_toque", event.relative)
+	elif event is InputEventScreenDrag and event.index == dedo_analogico:
+		ponta_analogico = event.position
+		var v := (ponta_analogico - centro_analogico).limit_length(RAIO_ANALOGICO) / RAIO_ANALOGICO
+		_forca("direita", v.x)
+		_forca("esquerda", -v.x)
+		_forca("baixo", v.y)
+		_forca("cima", -v.y)
+		queue_redraw()
 
 
 func _tocou(dedo: int, pos: Vector2) -> void:
-	for botao in BOTOES:
-		if pos.distance_to(_posicao_botao(botao)) <= RAIO_BOTAO * 1.15:
-			dedos_botoes[dedo] = botao.acao
-			Input.action_press(botao.acao)
+	for b in BOTOES:
+		if pos.distance_to(size + b.pos) <= b.get("raio", RAIO_BOTAO) * 1.15:
+			dedos_botoes[dedo] = b.acao
+			Input.action_press(b.acao)
 			return
-	if pos.x < size.x * 0.45 and dedo_analogico == -1:
+	if pos.x < size.x * 0.5 and pos.y > 140 and dedo_analogico == -1:
 		dedo_analogico = dedo
 		centro_analogico = pos
 		ponta_analogico = pos
-	elif dedo_camera == -1:
-		dedo_camera = dedo
 
 
 func _soltou(dedo: int) -> void:
@@ -65,48 +64,33 @@ func _soltou(dedo: int) -> void:
 		dedos_botoes.erase(dedo)
 	elif dedo == dedo_analogico:
 		dedo_analogico = -1
-		for acao in ["frente", "tras", "esquerda", "direita"]:
+		for acao in ["cima", "baixo", "esquerda", "direita"]:
 			Input.action_release(acao)
-	elif dedo == dedo_camera:
-		dedo_camera = -1
-
-
-func _aplicar_analogico() -> void:
-	var v := (ponta_analogico - centro_analogico).limit_length(RAIO_ANALOGICO) / RAIO_ANALOGICO
-	_forca("direita", v.x)
-	_forca("esquerda", -v.x)
-	_forca("tras", v.y)
-	_forca("frente", -v.y)
 
 
 func _forca(acao: String, valor: float) -> void:
-	if valor > 0.05:
+	if valor > 0.08:
 		Input.action_press(acao, valor)
 	else:
 		Input.action_release(acao)
 
 
-func _posicao_botao(botao: Dictionary) -> Vector2:
-	return size + botao.pos
-
-
 func _draw() -> void:
-	var fonte := get_theme_default_font()
+	var fonte := ThemeDB.fallback_font
 	if dedo_analogico != -1:
 		draw_circle(centro_analogico, RAIO_ANALOGICO, Color(1, 1, 1, 0.12))
 		draw_arc(centro_analogico, RAIO_ANALOGICO, 0, TAU, 48, Color(1, 1, 1, 0.4), 3.0)
-		var ponta := centro_analogico + (ponta_analogico - centro_analogico).limit_length(RAIO_ANALOGICO)
-		draw_circle(ponta, 36.0, Color(1, 1, 1, 0.45))
+		draw_circle(centro_analogico + (ponta_analogico - centro_analogico).limit_length(RAIO_ANALOGICO), 32.0, Color(1, 1, 1, 0.45))
 	else:
-		var canto := Vector2(150, size.y - 150)
-		draw_arc(canto, RAIO_ANALOGICO, 0, TAU, 48, Color(1, 1, 1, 0.25), 3.0)
-	for botao in BOTOES:
-		var c := _posicao_botao(botao)
-		var apertado: bool = botao.acao in dedos_botoes.values()
-		draw_circle(c, RAIO_BOTAO, Color(1, 1, 1, 0.35 if apertado else 0.18))
-		draw_arc(c, RAIO_BOTAO, 0, TAU, 40, Color(1, 1, 1, 0.5), 2.0)
-		var largura := fonte.get_string_size(botao.texto, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x
-		draw_string(fonte, c + Vector2(-largura / 2.0, 6), botao.texto, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(1, 1, 1, 0.9))
+		draw_arc(Vector2(140, size.y - 140), RAIO_ANALOGICO, 0, TAU, 48, Color(1, 1, 1, 0.25), 3.0)
+	for b in BOTOES:
+		var c: Vector2 = size + b.pos
+		var r: float = b.get("raio", RAIO_BOTAO)
+		var apertado: bool = b.acao in dedos_botoes.values()
+		draw_circle(c, r, Color(1, 1, 1, 0.35 if apertado else 0.16))
+		draw_arc(c, r, 0, TAU, 40, Color(1, 1, 1, 0.5), 2.0)
+		var w := fonte.get_string_size(b.texto, HORIZONTAL_ALIGNMENT_LEFT, -1, 15).x
+		draw_string(fonte, c + Vector2(-w / 2.0, 5), b.texto, HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Color(1, 1, 1, 0.9))
 
 
 func _notification(what: int) -> void:

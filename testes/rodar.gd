@@ -6,6 +6,7 @@ extends SceneTree
 const ARQUIVOS := [
 	"res://testes/teste_regras.gd",
 	"res://testes/teste_captura.gd",
+	"res://testes/teste_mapa.gd",
 ]
 
 

@@ -1,5 +1,7 @@
 # Análise do GDD Mythera 1.0
 
+> Em 2026-11-04 o jogo passou para 2D visto de cima, no Godot 4. As partes sobre Unreal e 3D abaixo ficam só como histórico.
+
 ## O que está bom e fica como está
 
 - Escopo do protótipo bem cortado: uma região, 3 elementos, uma criatura completa antes das outras e sem multiplayer.

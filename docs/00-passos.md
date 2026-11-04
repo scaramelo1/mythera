@@ -4,109 +4,88 @@ Lista de tudo o que vamos fazer. Cada passo concluído recebe ✅ e a lista atua
 
 Legenda: ✅ feito | 🔶 em andamento | ⬜ falta
 
-Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito.md` e analisado em `02-analise-gdd.md`. Tudo original: nome, criaturas, arte, músicas e mapa. Sem pagar para vencer e sem caixa surpresa.
+Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), adaptado para **2D visto de cima**. Tudo original: nome, criaturas, arte, músicas e mapa. Sem pagar para vencer e sem caixa surpresa. Na VPS: código, testes e a montagem da versão do navegador (sem o editor, que não cabe na memória).
 
 ## 0. Planejamento
 
-- ✅ Pasta do projeto e primeira lista de passos (2026-11-04)
-- ✅ GDD Mythera 1.0 recebido e estudado; análise em `02-analise-gdd.md` (2026-11-04)
-- ✅ Motor: Godot 4 em 3D (escolha do dono em 2026-11-04; versão estável atual: 4.7.2)
-- ✅ Plataformas: navegador primeiro, depois Android e iPhone (confirmado pelo dono em 2026-11-04), com o renderizador Compatibility (o único que roda no navegador) desde o começo
-- 🔶 Controles de toque na tela (analógico, câmera e botões, vários dedos), além de teclado, mouse e controle (2026-11-04) (falta o dono testar no celular)
-- ⬜ Pesquisar o nome "Mythera" (marca e lojas) e confirmar
-- ⬜ Redesenhar o Voltiri para não lembrar o Pikachu
-- 🔶 Tabela de elementos e fórmula de dano: proposta em `03-regras.md` e no código (2026-11-04) (falta o dono aprovar)
-- 🔶 Variação individual de atributos: bônus de 0 a 10% (2026-11-04) (falta o dono aprovar)
-- 🔶 Regras do protótipo em `03-regras.md` (2026-11-04) (falta o dono aprovar)
+- ✅ GDD recebido e estudado (`02-analise-gdd.md`) (2026-11-04)
+- ✅ Motor: Godot 4.7.2 (2026-11-04)
+- ✅ Jogo em 2D visto de cima (decisão do dono em 2026-11-04; o projeto 3D foi apagado)
+- ✅ Plataformas: navegador primeiro, depois Android e iPhone, renderizador Compatibility (2026-11-04)
+- ⬜ Pesquisar e confirmar o nome "Mythera"
+- ⬜ Redesenhar o Voltiri (parecido demais com o Pikachu)
+- 🔶 Regras do protótipo em `03-regras.md`: dano, bônus individual, experiência por vitória, núcleo gasto na falha (falta o dono aprovar)
 
-## 1. Semana 1: fundação
+## 1. Fundação 2D
 
-- ⬜ Instalar o Godot 4.7.2 e o Blender no PC (dono)
-- ✅ Projeto Godot 4.7.2 em terceira pessoa, renderizador Compatibility (navegador, Android e iPhone) (2026-11-04)
-- ✅ Estrutura de pastas: `cenas/`, `scripts/` (regras puras em `scripts/regras/`), `dados/`, `testes/`, `publicar/` (2026-11-04)
+- ✅ Projeto 2D: tela 1280 × 720, câmera com zoom 2, controles de teclado, controle e toque (2026-11-04)
+- ✅ Vale Esmeralda de testes (80 × 60 tiles), sempre igual: clareira com fogueira, Pradaria, Floresta Antiga, Campo de Pedras e Lago Espelhado, ligados por caminhos (2026-11-04)
+- ✅ Tiles, herói, criaturas, cristais e efeitos desenhados no código, provisórios até a arte chegar (2026-11-04)
+- ✅ Testes: 27 das regras e do mapa (`testes/rodar.gd`) e 1 que joga sozinho (`testes/teste_jogo.gd`) (2026-11-04)
+- ✅ Versão do navegador montada na VPS sem o editor (`publicar/montar-web.sh`), conferida rodando fora do projeto (2026-11-04)
 - 🔶 Repositório `github.com/scaramelo1/mythera` (falta o dono criar no GitHub e dar o push)
-- ✅ Mapa de testes: chão, muros, rampa, plataforma, escada, saltos, pilares, pedras e cristais (2026-11-04)
-- 🔶 Herói: andar (WASD), câmera no mouse, pular (Espaço) e esquivar (Shift), também por controle; teste automático da cena passou (2026-11-04) (falta o dono jogar)
-- ✅ Testes sem abrir o jogo: 20 testes das regras e 1 da cena (`testes/`) (2026-11-04)
-- ✅ Exportação pronta para navegador e Android (`export_presets.cfg`) e script para publicar no site (`publicar/publicar-web.sh`) (2026-11-04)
-- ⬜ Primeira versão no navegador em fsadesigners.com.br/mythera (o dono exporta no PC e envia)
+- ⬜ Publicar em fsadesigners.com.br/mythera e o dono testar no PC e no celular
 
-## 2. Semana 2: primeira criatura
+## 2. Primeiro modo de jogo: explorar e capturar
 
-- ⬜ Criatura base, com modelo provisório e colisão
-- ⬜ Vida, ataque, defesa, nível e taxa de captura
-- ⬜ Patrulha e perseguição simples
-- ⬜ Dano básico (botão esquerdo e Q)
-- ⬜ Barra de vida em cima da criatura
+- 🔶 Herói: anda em 8 direções, ataca de perto (Espaço), esquiva (Shift) e lança o Núcleo (G) (2026-11-04) (falta o dono jogar)
+- 🔶 Criaturas selvagens andando livres no mapa, com temperamento: Aquori foge, Mosshell revida, Flarin ataca quem chega perto (2026-11-04)
+- 🔶 Criaturas nascem por área, com nível de acordo com a distância do início, e voltam a aparecer (2026-11-04)
+- 🔶 Captura com o Núcleo de Vínculo e a fórmula do GDD; a chance aparece em cima da criatura mais perto (2026-11-04)
+- 🔶 Primeira criatura capturada vira companheira: segue o herói, luta junto e obedece ao comando (F) (2026-11-04)
+- 🔶 Experiência para herói e companheira; Flarin evolui para Flarvex no nível 18 (2026-11-04)
+- 🔶 Fogueira cura todos e salva; desmaiar leva de volta à fogueira (2026-11-04)
+- 🔶 Cristais de Essência pelo mapa dão Núcleos (voltam em 90 s) (2026-11-04)
+- 🔶 Painel da equipe (Tab): ver as criaturas e trocar a ativa (2026-11-04)
+- 🔶 Salvamento automático (a cada 30 s, ao capturar, ao subir de nível e na fogueira) (2026-11-04)
+- ⬜ O dono jogar e aprovar a sensação do combate e da captura
+- ⬜ Ajustar números (dano, vida, chance, experiência) depois de jogar
 
-## 3. Semana 3: captura e coleção
+## 3. Próximos sistemas
 
-- ✅ Dados da espécie (`dados/especies.json`) separados de cada criatura (`scripts/regras/criatura.gd`), com bônus próprio (2026-11-04)
-- ⬜ Núcleo de Vínculo no inventário (bônus dos núcleos já nas regras)
-- 🔶 Captura com a fórmula do GDD: regra pronta (`scripts/regras/captura.gd`) (2026-11-04); falta no jogo, de perto, com a tecla G
-- ✅ Testes obrigatórios nas regras: sucesso, falha, sem núcleos, fora do alcance, equipe cheia e salvar depois de capturar (2026-11-04)
-- ⬜ Tela da coleção
-- 🔶 Salvar e carregar: regra pronta (`scripts/regras/salvamento.gd`) (2026-11-04); falta ligar no jogo
+- ⬜ Golpe especial do herói (Q) e segundo golpe das criaturas
+- ⬜ Fabricação: madeira, pedra e cristais viram núcleos melhores e poções
+- ⬜ Dia e noite mudando as criaturas que aparecem
+- ⬜ Registro de criaturas (vistas e capturadas)
+- ⬜ Trocar criaturas entre equipe e reserva
+- ⬜ Minichefe da região
+- ⬜ Condições (dormindo, paralisada) que ajudam na captura
 
-## 4. Semana 4: progressão e primeira versão para testar
+## 4. Arte e som 2D
 
-- 🔶 Experiência e níveis (50 × L^1,5): regra pronta (2026-11-04); falta no jogo
-- 🔶 Evolução Flarin → Flarvex no nível 18: regra pronta (2026-11-04); falta a troca de aparência no jogo
-- ⬜ Invocar e recolher a companheira (R) e dar comandos (F)
-- ⬜ Companheira: seguir, detectar inimigo, atacar ou defender, usar habilidade e voltar
-- ⬜ Inimigo mais forte (minichefe)
-- ⬜ Versão para o navegador, publicada no site para testar
-- ⬜ Conferir os critérios do protótipo pronto (seção 15 do GDD)
+- ⬜ Escolher o estilo (pixel art ou desenho liso) e o tamanho dos tiles
+- ⬜ Herói com animação em 4 direções (parado, andar, atacar, esquivar, lançar)
+- ⬜ Flarin, Flarvex, Aquori e Mosshell com animação (parado, andar, atacar, levar dano, desmaiar)
+- ⬜ Tiles do Vale Esmeralda (grama, capim, água, areia, árvores, pedras, caminho, fogueira)
+- ⬜ Interface com arte própria
+- ⬜ Músicas e sons
 
-## 5. Primeira região: Vale Esmeralda (cerca de 500 × 500 m)
+## 5. Mundo aberto
 
-- ⬜ Terreno, vila pequena e pontos de interesse
-- ⬜ Dia e noite, mudando as criaturas que aparecem
-- ⬜ Geradores de criaturas por habitat e horário
-- ⬜ Flarin, Aquori e Mosshell completos (fogo, água e natureza)
-- ⬜ Arremesso do núcleo (projétil), com efeitos e animação
+- ⬜ Mapa maior, carregando por partes
+- ⬜ Vila pequena com personagens
+- ⬜ Regiões do GDD: Terras de Ignis, Cordilheira Glacial, Floresta de Lumina, Deserto de Arkan e Ilhas Celestiais
+- ⬜ Viagem rápida e montarias
 
-## 6. Herói e sobrevivência leve
+## 6. Herói e progressão
 
 - ⬜ Atributos vigor, força, essência e agilidade, com pontos a cada nível
 - ⬜ Trilhas de talentos: guerreiro, vinculador, explorador, elementalista e artesão
-- ⬜ Coleta de madeira, pedra e cristais de Essência
-- ⬜ Estação de fabricação: núcleos de vários níveis e poções
-- ⬜ Base com baú e ponto de descanso
-- ⬜ Armaduras e acessórios que mudam a aparência do herói
+- ⬜ Equipamentos que mudam a aparência
 
 ## 7. Missões e história
 
-- ⬜ Missões guardadas como dados, sem reprogramar a lógica
-- ⬜ Prólogo (Despertar do Vinculador) e Capítulo I (Primeiro Vínculo)
-- ⬜ Capítulo II (Ecos da Ruptura): ruínas no Vale Esmeralda
-- ⬜ Missões secundárias: resgate, coleta, exploração e combate
+- ⬜ Missões guardadas como dados
+- ⬜ Prólogo e Capítulos I a V
 
-## 8. Arte e som
+## 8. Conteúdo
 
-- ⬜ Arte própria das criaturas (as imagens do GDD são só inspiração)
-- ⬜ Modelos, animações e formas evoluídas
-- 🔶 Herói provisório com o pacote Universal Base Characters da Quaternius (CC0): masculino e feminino, 65 ossos, texturas reduzidas para o navegador, em `assets/modelos/heroi/` (2026-11-04) (falta o dono ver no PC)
-- ⬜ Animações do herói (parado, andar, pular, esquivar), de preferência o pacote de animações "Universal" da Quaternius, feito para o mesmo esqueleto
-- ⬜ Roupas do herói (a base vem só com roupa de baixo)
-- ⬜ Criaturas provisórias (o pacote recebido só tem humanos)
-- ⬜ Telas e interface
-- ⬜ Músicas e sons
-
-## 9. Conteúdo do jogo completo
-
-- ⬜ 20 primeiras criaturas e depois os 10 elementos
-- ⬜ Capítulos III a V
-- ⬜ Regiões: Terras de Ignis, Cordilheira Glacial, Floresta de Lumina, Deserto de Arkan e Ilhas Celestiais
-- ⬜ Montarias e criaturas trabalhando na base
+- ⬜ 20 criaturas e depois os 10 elementos
 - ⬜ Guardiões e chefes
 
-## 10. Lançamento
+## 9. Lançamento
 
 - ⬜ Testes com amigos e ajuste de equilíbrio
-- ⬜ Página do jogo no site, trailer e imagens
 - ⬜ Android: APK para testes e AAB para a Google Play (teste fechado com 12 pessoas por 14 dias)
-- ⬜ iPhone: Apple Developer (US$ 99 por ano) e build feita num Mac com Xcode (Mac alugado na nuvem ou GitHub Actions com macOS); enquanto isso, o iPhone joga pelo navegador
-- ⬜ Classificação etária e política de privacidade
-- ⬜ PC (Steam ou itch.io), se fizer sentido
-- ⬜ Online só depois, se fizer sentido
+- ⬜ iPhone: Apple Developer e build num Mac com Xcode
+- ⬜ Página do jogo no site, classificação etária e política de privacidade
