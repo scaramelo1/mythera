@@ -11,22 +11,25 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 - ✅ Pasta do projeto e primeira lista de passos (2026-11-04)
 - ✅ GDD Mythera 1.0 recebido e estudado; análise em `02-analise-gdd.md` (2026-11-04)
 - ✅ Motor: Godot 4 em 3D (escolha do dono em 2026-11-04; versão estável atual: 4.7.2)
-- ⬜ Plataformas: navegador primeiro, depois Android e iPhone, com o renderizador Compatibility (o único que roda no navegador) desde o começo
-- ⬜ Controles de toque na tela, além de teclado, mouse e controle
+- ✅ Plataformas: navegador primeiro, depois Android e iPhone (confirmado pelo dono em 2026-11-04), com o renderizador Compatibility (o único que roda no navegador) desde o começo
+- 🔶 Controles de toque na tela (analógico, câmera e botões, vários dedos), além de teclado, mouse e controle (2026-11-04) (falta o dono testar no celular)
 - ⬜ Pesquisar o nome "Mythera" (marca e lojas) e confirmar
 - ⬜ Redesenhar o Voltiri para não lembrar o Pikachu
-- ⬜ Tabela de elementos (vantagens e fraquezas) e fórmula de dano
-- ⬜ Variação individual de atributos (bônus aleatório de cada criatura)
-- ⬜ Regras do protótipo aprovadas (`03-regras.md`)
+- 🔶 Tabela de elementos e fórmula de dano: proposta em `03-regras.md` e no código (2026-11-04) (falta o dono aprovar)
+- 🔶 Variação individual de atributos: bônus de 0 a 10% (2026-11-04) (falta o dono aprovar)
+- 🔶 Regras do protótipo em `03-regras.md` (2026-11-04) (falta o dono aprovar)
 
 ## 1. Semana 1: fundação
 
-- ⬜ Instalar o motor e o Blender no PC
-- ⬜ Criar o projeto em terceira pessoa, para PC
-- ⬜ Estrutura de pastas e prefixos (BP_, WBP_, ST_, DT_, ABP_, DA_ ou o equivalente no motor escolhido)
-- ⬜ Repositório no GitHub (com Git LFS se for Unreal)
-- ⬜ Mapa de testes com terreno e obstáculos
-- ⬜ Herói: andar (WASD), câmera no mouse, pular (Espaço) e esquivar (Shift)
+- ⬜ Instalar o Godot 4.7.2 e o Blender no PC (dono)
+- ✅ Projeto Godot 4.7.2 em terceira pessoa, renderizador Compatibility (navegador, Android e iPhone) (2026-11-04)
+- ✅ Estrutura de pastas: `cenas/`, `scripts/` (regras puras em `scripts/regras/`), `dados/`, `testes/`, `publicar/` (2026-11-04)
+- 🔶 Repositório `github.com/scaramelo1/mythera` (falta o dono criar no GitHub e dar o push)
+- ✅ Mapa de testes: chão, muros, rampa, plataforma, escada, saltos, pilares, pedras e cristais (2026-11-04)
+- 🔶 Herói: andar (WASD), câmera no mouse, pular (Espaço) e esquivar (Shift), também por controle; teste automático da cena passou (2026-11-04) (falta o dono jogar)
+- ✅ Testes sem abrir o jogo: 20 testes das regras e 1 da cena (`testes/`) (2026-11-04)
+- ✅ Exportação pronta para navegador e Android (`export_presets.cfg`) e script para publicar no site (`publicar/publicar-web.sh`) (2026-11-04)
+- ⬜ Primeira versão no navegador em fsadesigners.com.br/mythera (o dono exporta no PC e envia)
 
 ## 2. Semana 2: primeira criatura
 
@@ -38,17 +41,17 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), resumido em `01-conceito
 
 ## 3. Semana 3: captura e coleção
 
-- ⬜ Dados da espécie separados dos dados de cada criatura capturada
-- ⬜ Núcleo de Vínculo no inventário
-- ⬜ Captura de perto com a tecla G e a fórmula do GDD
-- ⬜ Testes obrigatórios: sucesso, falha, sem núcleos, fora do alcance, equipe cheia e salvar depois de capturar
+- ✅ Dados da espécie (`dados/especies.json`) separados de cada criatura (`scripts/regras/criatura.gd`), com bônus próprio (2026-11-04)
+- ⬜ Núcleo de Vínculo no inventário (bônus dos núcleos já nas regras)
+- 🔶 Captura com a fórmula do GDD: regra pronta (`scripts/regras/captura.gd`) (2026-11-04); falta no jogo, de perto, com a tecla G
+- ✅ Testes obrigatórios nas regras: sucesso, falha, sem núcleos, fora do alcance, equipe cheia e salvar depois de capturar (2026-11-04)
 - ⬜ Tela da coleção
-- ⬜ Salvar e carregar as criaturas capturadas
+- 🔶 Salvar e carregar: regra pronta (`scripts/regras/salvamento.gd`) (2026-11-04); falta ligar no jogo
 
 ## 4. Semana 4: progressão e primeira versão para testar
 
-- ⬜ Experiência e níveis (50 × L^1,5) para herói e criatura
-- ⬜ Uma evolução com troca de aparência
+- 🔶 Experiência e níveis (50 × L^1,5): regra pronta (2026-11-04); falta no jogo
+- 🔶 Evolução Flarin → Flarvex no nível 18: regra pronta (2026-11-04); falta a troca de aparência no jogo
 - ⬜ Invocar e recolher a companheira (R) e dar comandos (F)
 - ⬜ Companheira: seguir, detectar inimigo, atacar ou defender, usar habilidade e voltar
 - ⬜ Inimigo mais forte (minichefe)

@@ -1,0 +1,11 @@
+# Mythera no navegador (versão de testes).
+AddType application/wasm .wasm
+AddType application/octet-stream .pck
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE application/wasm application/javascript text/html
+</IfModule>
+# Sem cache no index e no pacote do jogo, para todos receberem sempre a versão nova.
+<FilesMatch "\.(html|pck|js|wasm)$">
+    Header set Cache-Control "no-cache"
+</FilesMatch>
+Header set X-Robots-Tag "noindex, nofollow"

@@ -1,0 +1,67 @@
+{
+  "_sobre": "Espécies do protótipo. Cada atributo é [valor no nível 1, crescimento por nível]: A(L) = piso((A0 + G × (L − 1)) × (1 + bônus individual)). Valores para balancear nos testes.",
+  "flarin": {
+    "nome": "Flarin",
+    "descricao": "Raposinha de fogo, rápida e impulsiva.",
+    "elemento": "fogo",
+    "funcao": "atacante rápido",
+    "raridade": "comum",
+    "taxa_captura": 0.25,
+    "atributos": {
+      "vida": [40, 4.0], "ataque": [14, 2.2], "defesa": [9, 1.2],
+      "poder": [13, 2.0], "resistencia": [9, 1.2], "velocidade": [15, 1.5]
+    },
+    "evolui_para": "flarvex",
+    "nivel_evolucao": 18,
+    "habitat": ["campo", "rochas"],
+    "horario": ["dia"]
+  },
+  "flarvex": {
+    "nome": "Flarvex",
+    "descricao": "Forma evoluída do Flarin (nome provisório).",
+    "elemento": "fogo",
+    "funcao": "atacante rápido",
+    "raridade": "incomum",
+    "taxa_captura": 0.12,
+    "atributos": {
+      "vida": [45, 4.8], "ataque": [18, 2.6], "defesa": [11, 1.4],
+      "poder": [17, 2.4], "resistencia": [11, 1.4], "velocidade": [19, 1.8]
+    },
+    "evolui_para": "",
+    "nivel_evolucao": 0,
+    "habitat": ["campo", "rochas"],
+    "horario": ["dia", "tarde"]
+  },
+  "aquori": {
+    "nome": "Aquori",
+    "descricao": "Lontra de água que cura os aliados.",
+    "elemento": "agua",
+    "funcao": "suporte e cura",
+    "raridade": "comum",
+    "taxa_captura": 0.25,
+    "atributos": {
+      "vida": [48, 4.5], "ataque": [10, 1.5], "defesa": [11, 1.5],
+      "poder": [12, 1.8], "resistencia": [13, 1.6], "velocidade": [11, 1.2]
+    },
+    "evolui_para": "",
+    "nivel_evolucao": 0,
+    "habitat": ["rio", "lago"],
+    "horario": ["dia", "noite"]
+  },
+  "mosshell": {
+    "nome": "Mosshell",
+    "descricao": "Tartaruga de musgo, lenta e resistente.",
+    "elemento": "natureza",
+    "funcao": "defensor",
+    "raridade": "comum",
+    "taxa_captura": 0.22,
+    "atributos": {
+      "vida": [55, 5.0], "ataque": [10, 1.4], "defesa": [15, 2.0],
+      "poder": [10, 1.5], "resistencia": [13, 1.8], "velocidade": [8, 1.0]
+    },
+    "evolui_para": "",
+    "nivel_evolucao": 0,
+    "habitat": ["floresta"],
+    "horario": ["dia", "tarde", "noite"]
+  }
+}
