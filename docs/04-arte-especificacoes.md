@@ -28,6 +28,8 @@ Valem para toda arte do jogo 2D visto de cima. A referência de escala é o mapa
 
 ## Herói
 
+> Herói atual (PixelLab, 2026-11-06): quadros de 68 × 68, pés em (34, 57), personagem com ~49 px. O jogo usa esses valores (`scripts/mundo/heroi.gd`).
+
 - Quadro de **48 × 64 px**; o personagem com cerca de **44 px** dos pés ao topo da cabeça.
 - Pés no centro, a 4 px da borda de baixo, na mesma posição em todos os quadros.
 - Direções: baixo, cima e lado (o outro lado é espelhado pelo jogo).

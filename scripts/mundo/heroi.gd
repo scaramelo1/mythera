@@ -4,6 +4,20 @@ extends CharacterBody2D
 const Desenho = preload("res://scripts/arte/desenho.gd")
 const Dano = preload("res://scripts/regras/dano.gd")
 const Efeito = preload("res://scripts/mundo/efeito.gd")
+const Carregar = preload("res://scripts/arte/carregar.gd")
+
+## Folha de animação feita no PixelLab (arte-original/pixellab/heroi): quadros de 68 × 68.
+## Linhas: parado sul, norte, oeste, leste; andar sul, norte, oeste, leste.
+const FOLHA := "res://assets/personagens/heroi.png"
+const QUADRO := 68
+const PES := Vector2(34, 57)  # onde ficam os pés dentro do quadro
+const ANIMACOES := {
+	"parado": {"linha": 0, "quadros": 4, "fps": 4.0},
+	"andar": {"linha": 4, "quadros": 6, "fps": 10.0},
+}
+const DIRECOES := {"sul": 0, "norte": 1, "oeste": 2, "leste": 3}
+
+static var _folha: Texture2D = null
 
 const VELOCIDADE := 130.0
 const ESQUIVA_VELOCIDADE := 330.0
@@ -27,9 +41,12 @@ var _recarga_ataque := 0.0
 var _invulneravel := 0.0
 var _passo := 0.0
 var _piscar := 0.0
+var _tempo_animacao := 0.0
 
 
 func _ready() -> void:
+	if _folha == null:
+		_folha = Carregar.textura(FOLHA)
 	collision_layer = 2
 	collision_mask = 1
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -109,6 +126,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if velocity.length() > 1.0:
 		_passo += delta * 14.0
+	_tempo_animacao += delta * (1.8 if esquivando else 1.0)
 	queue_redraw()
 
 
@@ -136,5 +154,28 @@ func _draw() -> void:
 	else:
 		modulate = Color.WHITE
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE * escala)
-	Desenho.heroi(self, olhar, _passo, _piscar > 0.0)
+	if _folha != null:
+		_desenhar_folha()
+	else:
+		Desenho.heroi(self, olhar, _passo, _piscar > 0.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+func direcao_atual() -> String:
+	if absf(olhar.y) >= absf(olhar.x):
+		return "sul" if olhar.y >= 0.0 else "norte"
+	return "oeste" if olhar.x < 0.0 else "leste"
+
+
+func animacao_atual() -> String:
+	return "andar" if velocity.length() > 1.0 else "parado"
+
+
+func _desenhar_folha() -> void:
+	Desenho.elipse(self, Vector2(0, -1), Vector2(10, 4), Desenho.SOMBRA)
+	var anim: Dictionary = ANIMACOES[animacao_atual()]
+	var quadro := int(_tempo_animacao * anim.fps) % int(anim.quadros)
+	var linha: int = anim.linha + DIRECOES[direcao_atual()]
+	var origem := Rect2(quadro * QUADRO, linha * QUADRO, QUADRO, QUADRO)
+	var cor := Color(1, 0.55, 0.55) if _piscar > 0.0 else Color.WHITE
+	draw_texture_rect_region(_folha, Rect2(-PES, Vector2(QUADRO, QUADRO)), origem, cor)

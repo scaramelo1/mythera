@@ -64,7 +64,9 @@ Base: o GDD do dono (`referencia/mythera-gdd-1.0.pdf`), adaptado para **2D visto
 ## 4. Arte e som 2D
 
 - ⬜ Escolher o estilo (pixel art ou desenho liso) e o tamanho dos tiles
-- ⬜ Herói com animação em 4 direções (parado, andar, atacar, esquivar, lançar)
+- ✅ Herói gerado no PixelLab (4 direções) com parado e andar; folha em `assets/personagens/heroi.png`, originais em `arte-original/pixellab/heroi/`; 9 gerações do plano de teste (2026-11-06)
+- 🔶 Herói da PixelLab no jogo, na vila e no Vale (falta o dono ver na tela)
+- ⬜ Animações do herói que faltam: atacar, esquivar, lançar o Núcleo, levar dano e desmaiar
 - ⬜ Flarin, Flarvex, Aquori e Mosshell com animação (parado, andar, atacar, levar dano, desmaiar)
 - ⬜ Tiles do Vale Esmeralda (grama, capim, água, areia, árvores, pedras, caminho, fogueira)
 - ⬜ Interface com arte própria

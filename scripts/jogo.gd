@@ -68,6 +68,7 @@ func _ready() -> void:
 	heroi.jogo = self
 	_carregar()
 	heroi.dados = heroi_dados
+	heroi.escala = 0.75  # tiles de 32 px no Vale
 	_mundo.add_child(heroi)
 	_montar_camera()
 

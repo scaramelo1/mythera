@@ -6,6 +6,7 @@ const Teclado = preload("res://scripts/entradas.gd")
 const Heroi = preload("res://scripts/mundo/heroi.gd")
 const HeroiDados = preload("res://scripts/regras/heroi_dados.gd")
 const ControlesToque = preload("res://scripts/ui/controles_toque.gd")
+const Carregar = preload("res://scripts/arte/carregar.gd")
 
 const MAPA := "res://assets/mapas/vila.webp"
 const MASCARA := "res://dados/vila_mascara.json"
@@ -35,7 +36,6 @@ func _ready() -> void:
 	heroi.name = "Heroi"
 	heroi.jogo = self
 	heroi.dados = HeroiDados.new()
-	heroi.escala = 1.2
 	heroi.position = inicio
 	add_child(heroi)
 
@@ -62,15 +62,8 @@ func _ready() -> void:
 	tela.add_child(ajuda)
 
 
-## No PC (editor) usa a textura importada; no navegador e nos testes lê o arquivo direto.
 func _carregar_mapa() -> Texture2D:
-	if ResourceLoader.exists(MAPA):
-		var t = load(MAPA)
-		if t is Texture2D:
-			return t
-	var img := Image.new()
-	img.load_webp_from_buffer(FileAccess.get_file_as_bytes(MAPA))
-	return ImageTexture.create_from_image(img)
+	return Carregar.textura(MAPA)
 
 
 func _carregar_mascara() -> void:

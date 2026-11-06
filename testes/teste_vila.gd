@@ -18,10 +18,14 @@ func _rodar() -> void:
 	_conferir(vila.tamanho == Vector2i(1536, 1024), "tamanho do mapa: %s" % str(vila.tamanho))
 	_conferir(vila.andavel(heroi.position), "o herói começa num lugar andável")
 	_conferir(vila.formas_de_colisao > 50, "paredes invisíveis montadas (%d)" % vila.formas_de_colisao)
+	_conferir(heroi._folha != null and heroi._folha.get_size() == Vector2(408, 544), "folha do herói carregada")
+	_conferir(heroi.animacao_atual() == "parado", "começa parado")
 
 	# para cima a partir do início: a fonte bloqueia
 	Input.action_press("cima")
-	await _quadros(120)
+	await _quadros(10)
+	_conferir(heroi.animacao_atual() == "andar" and heroi.direcao_atual() == "norte", "andando para cima usa andar-norte")
+	await _quadros(110)
 	Input.action_release("cima")
 	_conferir(heroi.position.y < vila.inicio.y - 30.0, "devia subir pela praça")
 	_conferir(heroi.position.y > 486.0, "a fonte devia bloquear (y = %.0f)" % heroi.position.y)
